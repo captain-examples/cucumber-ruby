@@ -10,5 +10,5 @@ When("I do an action") do
 end
 
 Then("some results should be there") do
-  expect(@this_will_pass)
+  expect(@this_will_pass).to be true
 end
