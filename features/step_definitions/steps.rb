@@ -20,3 +20,11 @@ end
 Given /skip/ do
   skip_this_scenario
 end
+
+Before("@failing_before_hook") do |scenario|
+  raise 'failed in before hook'
+end
+
+After("@failing_after_hook") do |scenario|
+  raise 'failed in after hook'
+end
