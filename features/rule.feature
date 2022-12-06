@@ -14,3 +14,18 @@ Feature: Rule Sample
       Given this will fail
       When I do an action
       Then some results should be there
+
+    Example: A pending example
+      Given this is pending
+      When I do an action
+      Then nothing should happen
+
+    Example: A skipped example
+      Given this is skipped
+      When I do an action
+      Then nothing should happen
+
+    Example: An undefined example
+      Given this is undefined
+      When I do an action
+      Then nothing should happen

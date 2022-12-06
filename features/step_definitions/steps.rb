@@ -12,3 +12,11 @@ end
 Then("some results should be there") do
   expect(@this_will_pass).to be true
 end
+
+Given("this is pending") do
+  pending
+end
+
+Given /skip/ do
+  skip_this_scenario
+end
