@@ -1,9 +1,10 @@
-name: 'cucumber-ruby github action example'
+name: 'Captain Cucumber Integration Example'
 on:
   pull_request:
   push:
     paths-ignore:
       - README.md
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,5 +13,14 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - uses: rwx-research/setup-captain@v1
       - run: |
-          bundle exec cucumber
+          captain run \
+            --suite-id captain-examples-cucumber\
+            --test-results tmp/cucumber.json \
+            -- \
+            bundle exec cucumber \
+              --format json --out tmp/cucumber.json \
+              --format pretty
+        env:
+          RWX_ACCESS_TOKEN: ${{ secrets.RWX_ACCESS_TOKEN }}
