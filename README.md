@@ -14,41 +14,36 @@ bundle exec cucumber \
   --format pretty
 ```
 
-2. 🔐 Create an API token
+2. 🔐 Create an Access Token
 
-Create an API token for your organization within [captain][captain], ([more documentation here][create-api-token]).
-The token needs write access.
+Create an Access Token for your organization within [Captain][captain] ([more documentation here][create-access-token]).
 
-Add the new token as an action secret to your repository. Conventionally, we call this secret `RWX_API_TOKEN`.
+Add the new token as an action secret to your repository. Conventionally, we call this secret `RWX_ACCESS_TOKEN`.
 
-3. 💌 Add a step to upload to captain
+3. 💌 Install the Captain CLI, and then call it when running tests
+
+See the [full documentation on test suite integration][test-suite-integration].
 
 ```yaml
-- name: Upload test results to Captain # optional, shows in github action results
-  uses: rwx-research/upload-captain-artifact@v1
-  if: always() # run even if build fails
-  continue-on-error: true # if upload to captain fails, don't fail the build
-  with:
-    artifacts: |
-      [
-        {
-          "name": "Cucumber",
-          "path": "tmp/cucumber.json",
-          "kind": "test_results",
-          "parser": "cucumber_json"
-        }
-      ]
-    rwx-token: '${{ secrets.RWX_API_TOKEN }}'
+- uses: rwx-research/setup-captain@v1
+- run: |
+    captain run \
+      --suite-id captain-examples-cucumber \
+      --test-results tmp/cucumber.json \
+      -- \
+      bundle exec cucumber \
+        --format json --out tmp/cucumber.json \
+        --format pretty
+  env:
+    RWX_ACCESS_TOKEN: ${{ secrets.RWX_ACCESS_TOKEN }}
 ```
 
 4. 🎉 See your test results in Captain!
 
 Take a look at the [final workflow!][workflow-with-captain]
 
-For more information on the github action, see [its readme][action-readme].
-
 [workflow-before-captain]: https://github.com/captain-examples/cucumber-ruby/blob/basic-workflow/.github/workflows/ci.yml
 [captain]: https://captain.build/_/organizations
-[create-api-token]: https://www.rwx.com/captain/docs/api-tokens#generating-an-api-token
+[create-access-token]: https://www.rwx.com/docs/access-tokens
 [workflow-with-captain]: https://github.com/captain-examples/cucumber-ruby/blob/main/.github/workflows/ci.yml
-[action-readme]: https://github.com/rwx-research/upload-captain-artifact/#readme
+[test-suite-integration]: https://www.rwx.com/captain/docs/test-suite-integration

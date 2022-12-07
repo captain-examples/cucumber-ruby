@@ -1,4 +1,4 @@
-name: 'cucumber-ruby example'
+name: 'cucumber-ruby github action example'
 on:
   pull_request:
   push:
