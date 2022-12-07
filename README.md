@@ -43,7 +43,7 @@ See the [full documentation on test suite integration][test-suite-integration].
 Take a look at the [final workflow!][workflow-with-captain]
 
 [workflow-before-captain]: https://github.com/captain-examples/cucumber-ruby/blob/basic-workflow/.github/workflows/ci.yml
-[captain]: https://captain.build/_/organizations
+[captain]: https://account.rwx.com/deep_link/manage/access_tokens
 [create-access-token]: https://www.rwx.com/docs/access-tokens
 [workflow-with-captain]: https://github.com/captain-examples/cucumber-ruby/blob/main/.github/workflows/ci.yml
 [test-suite-integration]: https://www.rwx.com/captain/docs/test-suite-integration
