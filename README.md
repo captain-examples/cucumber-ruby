@@ -26,14 +26,7 @@ See the [full documentation on test suite integration][test-suite-integration].
 
 ```yaml
 - uses: rwx-research/setup-captain@v1
-- run: |
-    captain run \
-      --suite-id captain-examples-cucumber \
-      --test-results tmp/cucumber.json \
-      -- \
-      bundle exec cucumber \
-        --format json --out tmp/cucumber.json \
-        --format pretty
+- run: captain run captain-examples-cucumber
   env:
     RWX_ACCESS_TOKEN: ${{ secrets.RWX_ACCESS_TOKEN }}
 ```

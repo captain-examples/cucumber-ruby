@@ -2,4 +2,6 @@ test-suites:
   captain-examples-cucumber:
     command: bundle exec cucumber --format json --out tmp/cucumber.json --format pretty
     results:
+      language: Ruby
+      framework: Cucumber
       path: tmp/cucumber.json
